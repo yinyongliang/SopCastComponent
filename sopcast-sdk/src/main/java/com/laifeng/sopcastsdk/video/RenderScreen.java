@@ -87,6 +87,8 @@ public class RenderScreen {
 
         float ratio;
         if(hRatio > vRatio) {
+
+            //
             ratio = mScreenH / (cameraHeight * hRatio);
             final float vtx[] = {
                     //UV
