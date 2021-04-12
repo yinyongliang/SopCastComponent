@@ -1,5 +1,7 @@
 package com.laifeng.sopcastsdk.stream.sender.rtmp.packets;
 
+import android.util.Log;
+
 import com.laifeng.sopcastsdk.stream.sender.rtmp.Util;
 
 import java.io.IOException;
@@ -40,6 +42,7 @@ public abstract class ContentData extends Chunk {
      */
     @Override
     public void writeBody(OutputStream out) throws IOException {
+        Log.i("TAGG","Write_Body = " + data.length);
         out.write(data);
     }
 }

@@ -1,5 +1,7 @@
 package com.laifeng.sopcastsdk.stream.sender.rtmp.packets;
 
+import android.util.Log;
+
 import com.laifeng.sopcastsdk.stream.sender.rtmp.io.SessionInfo;
 
 import java.io.ByteArrayOutputStream;
@@ -28,6 +30,7 @@ public abstract class Chunk {
     protected abstract void writeBody(OutputStream out) throws IOException;
            
     public void writeTo(OutputStream out, final SessionInfo sessionInfo) throws IOException {
+        long start = System.currentTimeMillis();
         int chunkSize = sessionInfo.getTxChunkSize();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         writeBody(baos);        
@@ -46,5 +49,7 @@ public abstract class Chunk {
             header.writeTo(out, ChunkType.TYPE_3_NO_BYTE, sessionInfo);
         }
         out.write(body, pos, remainingBytes);
+
+        Log.i("TAGG","writeTo 时间 =  " + (System.currentTimeMillis() - start));
     }
 }

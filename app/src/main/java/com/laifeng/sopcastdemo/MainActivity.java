@@ -10,6 +10,8 @@ import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.laifeng.sopcastsdk.rtmp.RtmpPublish;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         GridView grid = (GridView) findViewById(R.id.grid);
         grid.setAdapter(new HoloTilesAdapter());
+
+
+        RtmpPublish.init("",1,1);
     }
 
 

@@ -1,5 +1,7 @@
 package com.laifeng.sopcastsdk.stream.sender.rtmp.io;
 
+import android.util.Log;
+
 import com.laifeng.sopcastsdk.entity.Frame;
 import com.laifeng.sopcastsdk.stream.sender.rtmp.packets.Command;
 import com.laifeng.sopcastsdk.stream.sender.rtmp.packets.Chunk;
@@ -39,6 +41,7 @@ public class WriteThread extends Thread {
                 Frame<Chunk> frame = mSendQueue.takeFrame();
                 if(frame != null) {
                     Chunk chunk = frame.data;
+
                     chunk.writeTo(out, sessionInfo);
                     if (chunk instanceof Command) {
                         Command command = (Command) chunk;

@@ -1,5 +1,7 @@
 package com.laifeng.sopcastsdk.stream.sender.sendqueue;
 
+import android.util.Log;
+
 import com.laifeng.sopcastsdk.constant.SopCastConstant;
 import com.laifeng.sopcastsdk.entity.Frame;
 import com.laifeng.sopcastsdk.utils.SopCastLog;
@@ -33,6 +35,8 @@ public class NormalSendQueue implements ISendQueue {
     private volatile boolean mScanFlag;
     private SendQueueListener mSendQueueListener;
     private ScanThread mScanThread;
+
+    private static final String TAG = "NormalSendQueue";
 
     public NormalSendQueue() {
         mFrameBuffer = new ArrayBlockingQueue<>(mFullQueueCount, true);
@@ -78,6 +82,7 @@ public class NormalSendQueue implements ISendQueue {
             return;
         }
         abandonData();
+        Log.i(TAG,"Frame length = " + mFrameBuffer.size());
         try {
             mFrameBuffer.put(frame);
             mInFrameCount.getAndIncrement();
